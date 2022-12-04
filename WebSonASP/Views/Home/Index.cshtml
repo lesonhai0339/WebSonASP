@@ -1,0 +1,272 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+    QLSONContext db = new WebSonASP.Models.QLSONContext();
+
+}
+
+<body>
+
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <div class="logo">
+                <h1 class="text-light">
+                    <a href="@Url.Action("Index","Home")"><img src="~/assets/img/Web/icon.png" alt="" class="img-thumbnail"></a>
+                    <a href="@Url.Action("Index","Home")"><span>FUNASA</span></a>
+                </h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="active"href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                    <li><a href="@Url.Action("about","Son")">Giới thiệu</a></li>
+                    <li><a href="@Url.Action("services","Son")">Hỗ trợ</a></li>
+                    <li><a href="@Url.Action("portfolio","Son")">Bảng Sơn</a></li>
+                    <li><a href="@Url.Action("team","Son")">Đội ngũ</a></li>
+                    <li><a href="@Url.Action("blog","Son")">Tin tức</a></li>
+                    <li class="dropdown">
+                        <a href="@Url.Action("danhMucSanPham","Son")"><span>Sản phẩm</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            @foreach(var item in db.Sons.ToList())
+                            {
+                                <li><a asp-controller="Son" asp-action="chiTietSanPham" asp-route-id="@item.Id">@item.Ten</a></li>
+                            }
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("contact","Son")">Liên hệ</a></li>
+                    <!--<li><a class="single" href="tel:+0384 539 162">Liên hệ: 0384 539 162</a></li>--test tell-->
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-cntent-center align-items-top">
+    <div id="heroCarousel" class="container-fluid carousel carousel-fade" data-bs-ride="carousel">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active " data-bs-interval="3000">
+          <img src="assets/img/Web/Carousel/4.jpg" class="d-flex img1 justify-cntent-center align-items-top" alt="...">
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item " data-bs-interval="3000">
+        <img src="assets/img/Web/Carousel/5.jpg" class="d-flex img1 justify-cntent-center align-items-top" alt="...">
+      </div>
+
+      <!-- Slide 3 --> 
+      <div class="carousel-item " data-bs-interval="3000">
+        <img src="assets/img/Web/Carousel/6.jpg" class="d-flex img1 justify-cntent-center align-items-top" alt="...">
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section><!-- End Hero -->
+
+
+
+  <main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section class="services">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="icon-box icon-box-pink">
+              <div class="icon"><i class="fa-solid fa-brush"></i></div>
+              <h4 class="title"><a href="">Đa dạng sản phẩm</a></h4>
+              <p class="description">Chúng tôi có đầy đủ các loại từ sơn dầu, sơn nước, sơn chống rỉ với đầy đủ các loại màu sắc cùng nhiều kích
+                thước khác nhau cho bạn lựa chọn
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box icon-box-cyan">
+              <div class="icon"><i class="fa-solid fa-shield"></i></div>
+              <h4 class="title"><a href="">Khả năng bảo vệ</a></h4>
+              <p class="description">Bảo vệ vững chắc công trình của bạn bất kể thời tiết khắt nghiệt</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box icon-box-green">
+              <div class="icon"><i class="fa-solid fa-headset"></i></div>
+              <h4 class="title"><a href="">Hỗ trợ tư vấn</a></h4>
+              <p class="description">Gọi ngay đến tổng đài để được hỗ trợ tốt nhất</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box icon-box-blue">
+              <div class="icon"><i class="fa-solid fa-truck-fast"></i></div>
+              <h4 class="title"><a href="">Giao hàng nhanh</a></h4>
+              <p class="description">Giao hàng tận nơi miễn phí ngay trong ngày</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="2000">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 video-box" data-aos="fade-right">
+            <iframe style="margin-top: 20px;" width="650" height="340"src="https://www.youtube.com/embed/-sA6xcsVQpM" title="Sơn Phương Nam" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="col-lg-6 d-flex flex-column justify-content-center p-5" data-aos="fade-left">
+            <div class="icon-box">
+              <div class="icon"><i class="fa-sharp fa-solid fa-fill-drip"></i></div>
+              <h4 class="title"><a href="">Trang FaceBook</a></h4>
+              <p class="description">Tất cả những gì bạn cần là chỉ việc nhấc máy lên và gọi cho chúng tôi và mọi thứ bạn cần sẽ được giao tận tay trong ngày</p>
+               <a class="description" href="https://www.facebook.com/profile.php?id=100087681616044" target="_blank">Di chuyển đến kênh</a>
+            </div>
+            <div class="icon-box">
+              <div class="icon"><i class="fa-solid fa-paint-roller"></i></div>
+              <h4 class="title"><a href="">Kênh Youtube chính thức</a></h4>
+              <p class="description">Mọi thông tin về sản phẩm mới đều được chúng tôi đăng lên kênh Youtube chính thức này</p>
+              <a class="description" href="https://www.youtube.com/channel/UC0U3QfNq4eQd_ox6-G9t8SA" target="_blank">Di chuyển đến kênh</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div id="caigido"></div>
+    </section><!-- End Why Us Section -->
+
+<!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials section-bg">
+      <div class="container">
+        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+          <h2>Danh Mục Sản Phẩm</h2>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+             @foreach(var item in db.Sons.ToList())
+            {
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                      <img src="~/assets/img/SanPham/@item.Hinhanh" style="border-radius:20px" class="img-thumbnail" alt="">
+                      <h3><strong>@item.Ten</strong></h3>
+                      <button asp-action="xemChiTiet" class="btn btn-primary" style="border:1px solid aqua;background-color:aqua;border-radius:5px;">Chi tết sản phẩm</button>
+                  </div>
+                </div><!-- End testimonial item -->
+            }
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section class="features">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Features</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5">
+            <img src="assets/img/Web/Features/1.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-4">
+            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <p class="fst-italic">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <ul>
+              <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5 order-1 order-md-2">
+            <img src="assets/img/Web/Features/3.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1">
+            <h3>Corporis temporibus maiores provident</h3>
+            <p class="fst-italic">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum
+            </p>
+          </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5">
+            <img src="assets/img/Web/Features/1.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5">
+            <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
+            <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
+            <ul>
+              <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+              <li><i class="bi bi-check"></i> Facilis ut et voluptatem aperiam. Autem soluta ad fugiat.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5 order-1 order-md-2">
+            <img src="assets/img/Web/Features/2.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1">
+            <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
+            <p class="fst-italic">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+  </main><!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Vendor JS Files -->
+  <script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="~/assets/vendor/aos/aos.js"></script>
+  <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="~/assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="~/assets/js/main.js"></script>
+</body>
+
+
+

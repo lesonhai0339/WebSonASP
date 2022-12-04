@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebSonASP.Models.Son>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã
+            </th>
+            <th>
+                Tên
+            </th>
+            <th>
+                Loại
+            </th>
+            <th>
+               Chú thích
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Hướng dẫn
+            </th>
+            <th>
+                Công dụng
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.Ten
+            </td>
+            <td>
+                @item.Loai
+            </td>
+            <td>
+                @item.Chuthich
+            </td>
+            <td>
+                    <img class="img-thumbnail w-50 h-50" src="~/assets/img/SanPham/@item.Hinhanh" alt="Picture">
+            </td>
+            <td>
+                @item.Huongdansd
+            </td>
+            <td>
+                @item.Congdung
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

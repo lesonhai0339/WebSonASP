@@ -1,0 +1,158 @@
+﻿@model WebSonASP.Models.Son
+
+@{
+    ViewData["Title"] = "chiTietSanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLSONContext db = new WebSonASP.Models.QLSONContext();
+}
+<body>
+
+    <header id="header" class="fixed-top d-flex align-items-center ">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <div class="logo">
+                <h1 class="text-light">
+                    <a href="@Url.Action("Index","Home")"><img src="~/assets/img/Web/icon.png" alt="" class="img-thumbnail"></a>
+                    <a href="@Url.Action("Index","Home")"><span>FUNASA</span></a>
+                </h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                    <li><a href="@Url.Action("about","Son")">Giới thiệu</a></li>
+                    <li><a href="@Url.Action("services","Son")">Hỗ trợ</a></li>
+                    <li><a href="@Url.Action("portfolio","Son")">Bảng Sơn</a></li>
+                    <li><a href="@Url.Action("team","Son")">Đội ngũ</a></li>
+                    <li><a href="@Url.Action("blog","Son")">Tin tức</a></li>
+                    <li class="dropdown">
+                        <a class="active" href="@Url.Action("danhMucSanPham","Son")"><span>Sản phẩm</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            @foreach (var item in db.Sons.ToList())
+                            {
+                                <li><a asp-controller="Son" asp-action="chiTietSanPham" asp-route-id="@item.Id">@item.Ten</a></li>
+                            }
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("contact","Son")">Liên hệ</a></li>
+                    <!--<li><a class="single" href="tel:+0384 539 162">Liên hệ: 0384 539 162</a></li>--test tell-->
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+        <!-- ======= Blog Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Tin Tức</h2>
+
+                    <ol>
+                        <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+                        <li>Danh mục sản phẩm</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Blog Section -->
+
+        <!-- ======= Blog Section ======= -->
+        <section id="blog" class="blog">
+           <div class="container" data-aos="fade-up">
+              <div class="row">
+                  <div class="col-lg-8 entries">
+                      <section id="portfolio-details" class="portfolio-details">
+                          <div class="container">
+                              <div class="row gy-4">
+                                  <div class="col-lg-8">
+                                      <div class="portfolio-details-slider swiper">
+                                          <div class="swiper-wrapper align-items-center">
+                                              <div class="swiper-slide">
+                                                  <img src="~/assets/img/SanPham/@Model.Hinhanh" alt="Son" />
+                                              </div>
+                                              <div class="swiper-slide">
+                                                  <img src="~/assets/img/Web/Features/1.jpg" alt="Son" />
+                                              </div>
+
+                                               <div class="swiper-slide">
+                                                  <img src="~/assets/img/Web/Features/2.jpg" alt="Son" />
+                                               </div>
+                                          </div>
+                                          <div class="swiper-pagination"></div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-4">
+                                     <div class="portfolio-info">
+                                        <h3>@Model.Ten</h3>
+                                          <ul>
+                                             <li><strong>Category</strong>: Web design</li>
+                                             <li><strong>Client</strong>: ASU Company</li>
+                                             <li><strong>Project date</strong>: 01 March, 2020</li>
+                                             <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                                          </ul>
+                                     </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="portfolio-description">
+                              <h2 class="entry-title">
+                                  Hướng dẫn sử dụng
+                              </h2>
+                              <p>
+                                    @Model.Huongdansd
+                              </p>
+                              <div class="entry-content">
+                                  <h2>Công dụng</h2>
+                                 <p>
+                                    @Model.Congdung
+                                 </p>
+                              </div>
+                          </div>
+                      </section> <!-- End Portfolio Details Section -->
+                  </div><!-- End blog entries list -->
+                    <div class="col-lg-4">
+
+                        <div class="sidebar">
+                            <h3 class="sidebar-title">Tìm kiếm</h3>
+                            <div class="sidebar-item search-form">
+                                <form action="">
+                                    <input type="text">
+                                    <button type="submit"><i class="bi bi-search"></i></button>
+                                </form>
+                            </div><!-- End sidebar search formn-->
+                            <h3 class="sidebar-title">Các sản phầm khác</h3>
+                            <div class="sidebar-item recent-posts">
+
+                                @foreach (var item in db.Sons.ToList())
+                                {
+                                    if (item.Id != Model.Id)
+                                    {
+                                        <div class="post-item clearfix">
+                                            <img src="~/assets/img/SanPham/@item.Hinhanh" alt="">
+                                            <h4><a asp-controller="Son" asp-action="chiTietSanPham" asp-route-id="@item.Id">@item.Ten</a></h4>
+                                        </div>
+                                    }
+                                }
+                            </div><!-- End sidebar recent posts-->
+                        </div><!-- End sidebar -->
+                    </div><!-- End blog sidebar -->
+              </div>         
+           </div>
+        </section><!-- End Blog Section -->
+    </main><!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+</body>
